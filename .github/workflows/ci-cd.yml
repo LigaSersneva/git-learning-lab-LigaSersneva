@@ -15,17 +15,15 @@ jobs:
       uses: actions/checkout@v4
     - name: Parbaudit, vai eksiste students.md
       run: |
-
        if [ ! -f students.md ]; then echo "Kļūda: fails students.md nav atrasts!"
-
        exit 1 
        fi
-       - name: Paradit students.md saturu
-         run: cat students.md
+    - name: Paradit students.md saturu
+      run: cat students.md
 
-       - name: Testa solis
-         run: echo "Parbaude veiksmigi izpildita"
+    - name: Testa solis
+      run: echo "Parbaude veiksmigi izpildita"
 
-       - name: Deploy (demo solis)
-         if: success()
-         run: echo "Deploy veiksmīgs"
+    - name: Deploy (demo solis)
+      if: success()
+      run: echo "Deploy veiksmīgs"
