@@ -11,7 +11,7 @@ def majaslapa():
         dati = atbilde.json()
         
         # 2. Izvelkam no datiem vajadzīgo informāciju
-        ēdiens = dati['meals'][0]
+        ediens = dati['meals'][0]
         
         recepte = {
             "nosaukums": ediens['strMeal'],
