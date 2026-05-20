@@ -7,7 +7,7 @@ app = Flask(__name__)
 def majaslapa():
     try:
         # 1. Pieprasām nejaušu vakariņu recepti no bezmaksas API servera
-        atbilde = requests.get("https://themealdb.com", timeout=5)
+        atbilde = requests.get("https://www.themealdb.com/api/json/v1/1/random.php", timeout=5)
         dati = atbilde.json()
         
         # 2. Izvelkam no datiem vajadzīgo informāciju
