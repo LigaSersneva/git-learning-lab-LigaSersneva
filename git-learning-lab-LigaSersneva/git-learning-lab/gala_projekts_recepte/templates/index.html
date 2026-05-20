@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Vakariņu Ideja</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Šī vakara vakariņu ideja!</h1>
+    
+    <div class="recepte-card" style="max-width: 400px; text-align: center;">
+        <h2>{{ recepte.nosaukums }}</h2>
+        
+        {% if recepte.bilde %}
+        <img src="{{ recepte.bilde }}" alt="Vakariņas" style="max-width:100%; border-radius:8px; margin-top:10px;">
+        {% endif %}
+    </div>
+
+    <button onclick="window.location.reload();" style="margin-top: 20px;">Rādīt citu recepti</button>
+</body>
+</html>
+
