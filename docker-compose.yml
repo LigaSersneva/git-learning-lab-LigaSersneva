@@ -1,0 +1,45 @@
+services:
+  # 1. TAVS PIRMAIS PROJEKTS (Portā 8080)
+  web-pirmais:
+    build: .
+    ports:
+      - "8080:80"
+
+  # 2. PROJEKTS AR WEBDATA MAPI (Portā 8081)
+  web-volume:
+    image: nginx:latest
+    ports:
+      - "8081:80"
+    volumes:
+      - ./webdata:/usr/share/nginx/html
+
+  # 3. PROJEKTS, KO SAUCI PAR 8082 (Portā 8082)
+  web-otrais:
+    build: .
+    ports:
+      - "8082:80"
+
+  # 4. TAVS JAUNAIS BACKEND (Portā 5000)
+  backend:
+    image: node:18
+    working_dir: /app
+    volumes:
+      - ./backend:/app
+    command: ["node", "server.js"]
+    ports:
+      - "5000:5000"
+
+  # 5. DATUBĀZE (Fona serviss)
+  db:
+    image: postgres:15
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: appdb
+    volumes:
+      - db_data:/var/lib/postgresql/data
+
+volumes:
+  db_data:
+
+

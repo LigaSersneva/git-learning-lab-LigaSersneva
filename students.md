@@ -1,2 +1,3 @@
 # Studentu saraksts
+
 ## Līga Šeršņeva
