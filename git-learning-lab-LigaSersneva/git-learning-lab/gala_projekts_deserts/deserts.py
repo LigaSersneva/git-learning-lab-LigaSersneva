@@ -1,16 +1,16 @@
 from flask import Flask, render_template
-import requests  # Bibliotēka, kas prot paņemt datus no citiem interneta serveriem
+import requests
 
 app = Flask(__name__)
 
 @app.route('/')
 def majaslapa():
     try:
-        # 1. Pieprasām datus tieši no DESERTU kategorijas filtra
+        # 1. Pieprasām datus no desertu kategorijas filtra
         atbilde = requests.get("https://themealdb.com", timeout=5)
         dati = atbilde.json()
         
-        # 2. Serveris datus atsūta zem atslēgas 'meals'. Izvēlamies no tiem vienu nejaušu desertu:
+        # 2. Serveris datus vienmēr sūta zem atslēgas 'meals'. Izvēlamies vienu nejaušu desertu:
         import random
         izveletais_deserts = random.choice(dati['meals'])
         
@@ -21,14 +21,13 @@ def majaslapa():
     except Exception as e:
         # Ja nav interneta vai API nedarbojas, parādām noklusējuma kļūdu
         recepte = {
-            "nosaukums": f"Neizdevās ielādēt desertu: {e}",
+            "nosaukums": "Neizdevās ielādēt desertu (Pārbaudi internetu)",
             "bilde": "https://unsplash.com" # Strādājoša virtuļu bilde
         }
         
     return render_template('index.html', recepte=recepte)
 
 if __name__ == '__main__':
-    # Šis pieraksts ar 'os.environ' palīdzēs Render mākonim pašam pārvaldīt portu 3000 pēc tam
     import os
     port = int(os.environ.get("PORT", 3000))
-    app.run(host='0.0.0.0', port=port, debug=True)
+    app.run(host='0.0.0.0', port=port)
