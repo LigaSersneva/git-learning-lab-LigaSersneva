@@ -3,33 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nejaušs Deserts</title>
+    <title>Deserts</title>
     <style>
         body { margin: 0; display: flex; justify-content: center; align-items: center; height: 100vh; background: #f0f0f0; font-family: sans-serif; }
-        .container { text-align: center; }
-        img { max-width: 90%; max-height: 75vh; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.2); display: block; margin: 0 auto 15px; background: #ddd; min-width: 300px; min-height: 200px; }
-        button { padding: 10px 20px; font-size: 16px; background: #ff6b6b; color: white; border: none; border-radius: 5px; cursor: pointer; transition: 0.2s; }
+        .container { text-align: center; max-width: 500px; background: white; padding: 25px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+        h1 { font-size: 24px; color: #333; margin-bottom: 5px; }
+        h2 { font-size: 18px; color: #666; margin-bottom: 20px; font-weight: normal; }
+        img { max-width: 100%; max-height: 50vh; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.15); display: block; margin: 0 auto 20px; background: #ddd; }
+        button { padding: 12px 25px; font-size: 16px; background: #ff6b6b; color: white; border: none; border-radius: 5px; cursor: pointer; transition: 0.2s; font-weight: bold; }
         button:hover { background: #ee5253; }
     </style>
 </head>
 <body>
     <div class="container">
-        <img id="dessert" src="" alt="Deserts">
-        <button onclick="jaunsDeserts()">Citu desertu!</button>
+        <h1>Šī vakara saldais deserts!</h1>
+        
+        <!-- Python iespraudīs īsto ēdiena nosaukumu -->
+        <h2>{{ recepte.nosaukums }}</h2>
+        
+        {% if recepte.bilde %}
+        <!-- Python iespraudīs īsto bildes saiti no interneta -->
+        <img src="{{ recepte.bilde }}" alt="Deserts">
+        {% endif %}
+        
+        <!-- Poga vienkārši pārlādē lapu, lai Python piemeklē jaunu desertu -->
+        <button onclick="window.location.reload();">Citu desertu!</button>
     </div>
-
-    <script>
-        // Šoreiz saraksts ir pilns ar strādājošiem attēlu ID (kūkas, ogas, saldumi)
-        const desertuId = [102, 106, 225, 312, 429, 431, 493, 766, 835, 903];
-
-        function jaunsDeserts() {
-            const randomId = desertuId[Math.floor(Math.random() * desertuId.length)];
-            document.getElementById('dessert').src = `https://picsum.photos{randomId}/800/600`;
-        }
-
-        // Ielādē pirmo attēlu
-        jaunsDeserts();
-    </script>
 </body>
 </html>
 
