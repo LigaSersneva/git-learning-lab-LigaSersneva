@@ -1,5 +1,6 @@
 from flask import Flask, render_template
 import requests
+import random
 
 app = Flask(__name__)
 
@@ -11,7 +12,6 @@ def majaslapa():
         dati = atbilde.json()
         
         # 2. Serveris datus vienmēr sūta zem atslēgas 'meals'. Izvēlamies vienu nejaušu desertu:
-        import random
         izveletais_deserts = random.choice(dati['meals'])
         
         recepte = {
