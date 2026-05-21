@@ -7,7 +7,7 @@ app = Flask(__name__)
 def majaslapa():
     try:
         # 1. Pieprasām datus no desertu kategorijas filtra
-        atbilde = requests.get("https://themealdb.com", timeout=5)
+        atbilde = requests.get("https://www.themealdb.com/api/json/v1/1/filter.php?c=Dessert", timeout=5)
         dati = atbilde.json()
         
         # 2. Serveris datus vienmēr sūta zem atslēgas 'meals'. Izvēlamies vienu nejaušu desertu:
